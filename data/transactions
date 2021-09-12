@@ -1,0 +1,13 @@
+{"ty":"dbc","db":"store"}
+{"ty":"coc","db":"store", "co":"books"}
+{"ty":"cod","db":"store", "co":"books"}
+{"ty":"dbd","db":"store"}
+{"ty":"dbc","db":"store"}
+{"ty":"coc","db":"store", "co":"books"}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4743d", "name":"munchkin-database manual v1.1", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4744d", "name":"munchkin-database manual v1.2", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4745d", "name":"munchkin-database manual v1.3", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4746d", "name":"munchkin-database manual v1.4", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4747d", "name":"munchkin-database manual v1.5", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4748d", "name":"munchkin-database manual v1.6", "author":"kaungwai"}}
+{"ty":"doc","db":"store", "co":"books", "do":{"_id":"ae473f4f-76fa-4454-8084-ae5319f4749d", "name":"munchkin-database manual v1.7", "author":"kaungwai"}}

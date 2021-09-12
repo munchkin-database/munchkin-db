@@ -1,0 +1,34 @@
+dbc database create
+	- database name
+dbd database drop
+	- database name
+coc collection create
+	- database name
+	- collection name
+cod collection drop
+	- database name
+	- colleciton name
+dc document create
+	- database name
+	- collection name
+	- document
+du document update
+	- database name
+	- collection name
+	- condition
+	- document
+dd document delete
+	- database name
+	- collection name
+	- condition
+
+config
+	- timezone utc
+
+
+
+read line by line
+	examine transaction type
+		check error
+		if error
+			

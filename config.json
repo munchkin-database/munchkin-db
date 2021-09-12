@@ -1,0 +1,13 @@
+{
+    "data":{
+        "folder_path":"data",
+        "file_path":"data/transactions"
+    },
+    "log":{
+        "loader":{
+            "folder_path":"log",
+            "file_path":"log/loader.log"
+        }
+    },
+    "language":"en_us"
+}

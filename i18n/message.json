@@ -1,0 +1,14 @@
+{
+    "LDR_I001":{
+        "en_us":"Database loading started."
+    },
+    "LDR_I002":{
+        "en_us":"Database loading ended successfully."
+    },
+    "LDR_E001":{
+        "en_us":"Database loading ended with errors."
+    },
+    "LDR_E002":{
+        "en_us":"Unknown transaction at line number %1%."
+    }
+}
