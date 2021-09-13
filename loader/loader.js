@@ -1,74 +1,76 @@
 const readline = require('readline');
 const fs = require('fs');
 
-const { loader_config, loader_keyname } = require('../util/alias');
-const { write_loader_log } = require('../util/logger')
+const { loaderConfig, loaderKeyname } = require('../util/alias');
+const { f_writeLoaderLog } = require('../util/logger')
 
-global.munchkin_dataset = {}
+global.munchkinDataset = {}
 let error_flag = false
 
-const load = function (callback) {
+const f_loadDatabase = function (callback = (result) => {}) {
 
-    write_loader_log('LDR_I001')
+    // start log
+    f_writeLoaderLog('LDR_I001')
 
-    let line_counter = 0
+    let lineCounter = 0
 
-    const transaction_reader = readline.createInterface({
-        input: fs.createReadStream(loader_config.data_file_path),
+    const transactionReader = readline.createInterface({
+        input: fs.createReadStream(loaderConfig.data_file_path),
         output: process.stdout,
         terminal: false
     })
 
-    transaction_reader.on('line', (line) => {
+    // read line by line
+    transactionReader.on('line', (line) => {
 
-        line_counter++
+        lineCounter++
 
         let transaction = JSON.parse(line)
-        let transaction_type = transaction[loader_keyname.transaction_type]
-        let database = transaction[loader_keyname.database]
+        let transactionType = transaction[loaderKeyname.transaction_type]
+        let database = transaction[loaderKeyname.database]
         let collection = null
         let document = null
         let doucment_id = null
 
-        if(transaction_type == loader_keyname.database_create){
+        if(transactionType == loaderKeyname.database_create){
             // create database
-            munchkin_dataset[database] = {}
-        } else if (transaction_type == loader_keyname.database_drop){
+            munchkinDataset[database] = {}
+        } else if (transactionType == loaderKeyname.database_drop){
             // drop database
-            delete munchkin_dataset[database]
-        } else if(transaction_type == loader_keyname.collection_create){
+            delete munchkinDataset[database]
+        } else if(transactionType == loaderKeyname.collection_create){
             // create collection
-            collection = transaction[loader_keyname.collection]
-            munchkin_dataset[database][collection] = {}
-        } else if(transaction_type == loader_keyname.collection_drop){
+            collection = transaction[loaderKeyname.collection]
+            munchkinDataset[database][collection] = {}
+        } else if(transactionType == loaderKeyname.collection_drop){
             // drop collection
-            collection = transaction[loader_keyname.collection]
-            delete munchkin_dataset[database][collection]
-        } else if(transaction_type == loader_keyname.document_create || transaction_type == loader_keyname.document_update){
+            collection = transaction[loaderKeyname.collection]
+            delete munchkinDataset[database][collection]
+        } else if(transactionType == loaderKeyname.document_create || transactionType == loaderKeyname.document_update){
             // document create OR update
-            collection = transaction[loader_keyname.collection]
-            document = transaction[loader_keyname.document]
+            collection = transaction[loaderKeyname.collection]
+            document = transaction[loaderKeyname.document]
             doucment_id = document._id
-            munchkin_dataset[database][collection][doucment_id] = document
-        } else if(transaction_type == loader_keyname.document_delete){
+            munchkinDataset[database][collection][doucment_id] = document
+        } else if(transactionType == loaderKeyname.document_delete){
             // document delete
-            collection = transaction[loader_keyname.collection]
-            document = transaction[loader_keyname.document]
+            collection = transaction[loaderKeyname.collection]
+            document = transaction[loaderKeyname.document]
             doucment_id = document._id
-            delete munchkin_dataset[database][collection][doucment_id]
+            delete munchkinDataset[database][collection][doucment_id]
         } else {
             // unknown transaction
             error_flag = true
-            write_loader_log('LDR_E002', [line_counter])
-            transaction_reader.close()
+            f_writeLoaderLog('LDR_E002', [lineCounter])
+            transactionReader.close()
         }
     });
 
-    transaction_reader.on('close', (line) => {
+    transactionReader.on('close', (line) => {
         if(!error_flag){
-            write_loader_log('LDR_I002')
+            f_writeLoaderLog('LDR_I002')
         } else {
-            write_loader_log('LDR_E001')
+            f_writeLoaderLog('LDR_E001')
         }
 
         callback({
@@ -78,7 +80,9 @@ const load = function (callback) {
     })
 }
 
-load(function(result){
-    console.log(result)
-    console.log(munchkin_dataset)
-})
+const f_unloadDatabase = function(){
+    munchkinDataset = {}
+}
+
+exports.f_loadDatabase = f_loadDatabase
+exports.f_unloadDatabase = f_unloadDatabase

@@ -1,20 +1,20 @@
 const path = require('path')
 
 const config = require('../config.json')
-const {accessJson} = require('./util')
+const {f_accessJson} = require('./util')
 
-const resolveConfigPath = function(p){
-    return path.resolve(__dirname, '../', accessJson(p,config))
+const f_resolveConfigPath = function(p){
+    return path.resolve(__dirname, '../', f_accessJson(p, config))
 }
 
-exports.loader_config = {
-    data_folder_path : resolveConfigPath('data.folder_path'),
-    data_file_path : resolveConfigPath('data.file_path'),
-    loader_log_folder_path : resolveConfigPath('log.loader.folder_path'),
-    loader_log_file_path : resolveConfigPath('log.loader.file_path')
+exports.loaderConfig = {
+    data_folder_path : f_resolveConfigPath('data.folder_path'),
+    data_file_path : f_resolveConfigPath('data.file_path'),
+    loader_log_folder_path : f_resolveConfigPath('log.loader.folder_path'),
+    loader_log_file_path : f_resolveConfigPath('log.loader.file_path')
 }
 
-exports.loader_keyname = {
+exports.loaderKeyname = {
     transaction_type : 'ty',
     database_create : 'dbc',
     database_drop : 'dbd',

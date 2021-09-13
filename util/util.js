@@ -1,8 +1,8 @@
-const accessJson = function(path, json){
+const f_accessJson = function(path, json){
     return path.split('.').reduce((a,b)=>a[b], json)
 }
 
-const getSysDate = function(isUTC){
+const f_getSysDate = function(isUTC){
     let date_now = new Date()
     let date_formatted = ''
     if(isUTC){
@@ -27,5 +27,5 @@ const getSysDate = function(isUTC){
     return date_formatted
 }
 
-exports.accessJson = accessJson
-exports.getSysDate = getSysDate
+exports.f_accessJson = f_accessJson
+exports.f_getSysDate = f_getSysDate
